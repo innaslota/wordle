@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Wordle</title>
+</head>
+<body>
+	<h1>Wordle</h1>
+
+	<script>
+		// Создаем массив со словами
+		var words = ["program", "monkey", "beautiful", "pancake", "happy", "garden", "tree", "smile"];
+		// Выбираем случайное слово
+		var word = words[Math.floor(Math.random() * words.length)];
+
+		// Создаем итоговый массив
+		var count = 0;
+		var answerArray = [];
+		for (var i = 0; i < word.length; i++) {
+			answerArray[i] = "_";
+		}
+
+		var remainingLetters = word.length;
+		var count = 0
+
+		// Итоговый цикл
+		while (remainingLetters > 0 && count < 20) {
+			// Показываем состояние игры
+			alert(answerArray.join(" "));
+
+			//Запрашиваем вариант ответа
+			var guess = prompt("Guess the letter or click on Cancel to quit the game.");
+			if (guess === null) {
+				// Выходим из игрового цикла
+				break;
+			} else if (guess.length !== 1) {
+				alert("Please, enter only one letter.");
+			} else {
+				guess = guess.toLowerCase();
+				count++;
+				// Обновляем состояние игры
+				for (var j = 0; j < word.length; j++) {
+					if (word[j] === guess && answerArray[j] === "_") {
+						answerArray[j] = guess;
+						remainingLetters--;
+					}
+				}
+			}
+
+		// Конец игрового цикла 	
+		}
+
+		// Отображаем ответ и поздравляем игрока
+		alert(answerArray.join(" "));
+		if (count < 20) {
+			alert("Good job! Your guessed word is " + word);
+		} else {
+			alert("Fail! Your guessed word is " + word);
+		}
+	</script>
+</body>
+</html>
